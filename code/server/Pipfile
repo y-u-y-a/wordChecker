@@ -1,0 +1,29 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "==2.2"
+mysqlclient = "==1.4.6"
+djangorestframework = "*"
+gunicorn = "*"
+pillow = "*"
+django-cors-headers = "*"
+
+[scripts]
+server = "python manage.py runserver"
+wsgi = "gunicorn config.wsgi:application"
+shell = "python manage.py shell"
+test = "python manage.py test"
+makemigrations = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+showmigrations = "python manage.py showmigrations"
+sqlmigrate = "python manage.py sqlmigrate"
+check = "python manage.py check"
+createsuperuser = "python manage.py createsuperuser"
+
+[requires]
+python_version = "3.7"

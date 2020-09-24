@@ -1,0 +1,8 @@
+FROM node:lts-alpine
+
+WORKDIR /code
+
+COPY ./code/client/package.json ./
+
+RUN npm install -g @vue/cli \
+    && npm install

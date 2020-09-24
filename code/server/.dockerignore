@@ -1,0 +1,6 @@
+.venv
+Pipfile.lock
+.vscode
+.git
+.gitignore
+.env

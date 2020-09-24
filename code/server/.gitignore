@@ -1,0 +1,5 @@
+.venv
+Pipfile.lock
+db.sqlite3
+test_database
+_media

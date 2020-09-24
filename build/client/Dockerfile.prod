@@ -1,0 +1,18 @@
+FROM node:lts-alpine as build-stage
+
+RUN rm -rf node_modules \
+    && rm -rf package-lock.json
+
+WORKDIR /code
+COPY ./code/client ./
+
+RUN npm install \
+    && npm run build
+
+
+
+FROM nginx:stable-alpine as production-stage
+
+COPY --from=build-stage ./code/client/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,22 @@
+FROM python:3.7
+
+# Install into Debian
+RUN apt-get update \
+    && apt-get install -y sudo wget gnupg2 vim \
+    # set Japanese
+    && apt-get install fonts-ipafont-gothic fonts-ipafont-mincho
+
+
+# Don't create '/__pycache__'
+ENV PYTHONDONTWRITEBYTECODE=1
+
+
+# copy project
+WORKDIR /code
+COPY ./code/server/requirements.txt ./
+
+
+# Install Python Libraries
+RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip install --no-cache-dir -r requirements.txt \
+#     && python -m pip install django-cors-headers

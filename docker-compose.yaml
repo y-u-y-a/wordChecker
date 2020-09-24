@@ -1,0 +1,66 @@
+version: "3"
+services:
+  mysql:
+    container_name: wordChecker_mysql
+    build:
+      context: .
+      dockerfile: ./build/mysql/Dockerfile.dev
+    ports:
+      - 4306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordChecker
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - default
+
+  # server:
+  #   container_name: wordChecker_server
+  #   build:
+  #     context: .
+  #     dockerfile: ./build/server/Dockerfile.dev
+  #   volumes:
+  #     - ./code/server:/code
+  #   ports:
+  #     - 8000:8000
+  #   working_dir: /code
+  #   command: python manage.py runserver 0.0.0.0:8000 --settings config.settings.dev
+  #   environment:
+  #     MYSQL_DATABASE: SODA
+  #     MYSQL_HOST: mysql
+  #     MYSQL_PORT: 3306
+  #     MYSQL_USER: root
+  #     MYSQL_PASSWORD: root
+  #     # IS_DEBUG: 'True'
+  #   networks:
+  #     - default
+  #   depends_on:
+  #     - mysql
+
+  # client:
+  #   container_name: wordChecker_client
+  #   build:
+  #     context: .
+  #     dockerfile: ./build/client/Dockerfile.dev
+  #   volumes:
+  #     - ./code/client:/code
+  #     - /code/node_modules # use in container(Volume Trick)
+  #   ports:
+  #     - 3000:3000
+  #   working_dir: /code
+  #   command: npm run serve
+  #   networks:
+  #     - default
+  #   depends_on:
+  #     - mysql
+
+networks:
+  default:
+    external: false
+
+volumes:
+  mysql-data:
+    external: false
