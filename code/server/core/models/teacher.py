@@ -1,7 +1,7 @@
 from django.db import models
 from core.models import User
 
-
+# (値, 表示名)
 GENDER_CHOICES = (
     (0, '未回答'),
     (1, '男性'),
